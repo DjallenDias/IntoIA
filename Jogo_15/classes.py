@@ -10,7 +10,8 @@ class No:
         self.acao = acao
 
     def __str__(self):
-        return '\n'.join([' '.join(map(str, linha)) for linha in self.estado])
+        return '\n'.join([' '.join(map(lambda x: f"{x:2d}", linha)) for linha in self.estado])
+
 
     def __repr__(self):
         return f"Matriz({self.estado})" 
@@ -166,7 +167,6 @@ class BuscaProfundidade:
 
         elif self.situacao == BUSCA_SUCESSO:
             print("Busca teve sucesso")
-            print(f"Solucao: {self.solucao}")
 
         return
 
