@@ -4,7 +4,7 @@ from time import sleep
 class No:
     def __init__(self, estado, custo, pai, acao):
         self.estado = estado
-        "Matriz 3x3"
+        "Matriz 4x4"
         self.custo = custo
         self.pai = pai
         self.acao = acao
@@ -16,8 +16,8 @@ class No:
         return f"Matriz({self.estado})" 
 
     def achar_espaco_vazio(self):
-        for i in range(3):
-            for j in range(3):
+        for i in range(4):
+            for j in range(4):
                 if self.estado[i][j] == 0:
                     return i, j
 
@@ -33,7 +33,7 @@ class No:
         ]
 
         for i, j in movimentos:
-            if (0 <= i < 3) and (0 <= j < 3):
+            if (0 <= i < 4) and (0 <= j < 4):
                 novo_estado = deepcopy(self.estado)
                 novo_estado[x][y], novo_estado[i][j] = novo_estado[i][j], novo_estado[x][y]
                 n_no = No(novo_estado, None, self, None)
@@ -160,8 +160,6 @@ class BuscaProfundidade:
     def executar(self):
         while self.situacao != BUSCA_FALHOU and self.situacao != BUSCA_SUCESSO:
             self.busca_passo()
-            print(self.fronteira[0], "\n")
-            sleep(0.07)
 
         if self.situacao == BUSCA_FALHOU:
             print("Busca falhou")
