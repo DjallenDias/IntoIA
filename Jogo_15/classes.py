@@ -23,7 +23,7 @@ class No:
                     return i, j
 
     def filhos(self):
-        filhos = []
+        filhos:list[No] = []
         x, y = self.achar_espaco_vazio()
 
         movimentos = [
