@@ -102,5 +102,12 @@ no_arad = No('Arad', 0, None, None)
 problema_romenia = Problema(estados.estados_romenia, no_arad,
                             lambda no: no.estado == 'Bucharest')
 
-busca = BuscaProfundidade(problema_romenia)
-busca.executar()
+buscaArad = BuscaProfundidade(problema_romenia)
+
+
+no_oradea = No('Oradea', 0, None, None)
+
+problema_neamt = Problema(estados.estados_romenia, no_oradea,
+                            lambda no: no.estado == 'Neamt')
+
+buscaOradea = BuscaProfundidade(problema_neamt)
