@@ -1,7 +1,7 @@
-from heapq import heappush, heappop
+from heapq import heappush, heappop, heapify
 
-import estados
-import heuristica
+from cidades_romenia import *
+from dist_reta import distancia
 
 class No:
     def __init__(self, estado:str, custo, pai, acao):
@@ -25,7 +25,7 @@ class No:
         resultado:list[No] = []
 
         for acao in espaco_acoes['acoes']: # type: ignore
-            filho = No(acao['destino'], acao['custo'] + heuristica.heu[acao["destino"]],
+            filho = No(acao['destino'], acao['custo'] + distancia(cidades_coord[self.estado], cidades_coord[problema.nome_objetivo]),
                         self, acao['destino'])
             
             resultado.append(filho)
@@ -43,10 +43,11 @@ class No:
         return solucao
 
 class Problema:
-    def __init__(self, espaco_estados:"list[dict[str, int]]", inicial:No, objetivo):
+    def __init__(self, espaco_estados:"list[dict[str, int]]", inicial:No, objetivo, nome_objetivo):
         self.espaco_estados = espaco_estados
         self.inicial = inicial
         self.objetivo = objetivo
+        self.nome_objetivo = nome_objetivo
 
 BUSCA_INICIANDO = 0
 BUSCA_FALHOU = 1
@@ -108,8 +109,8 @@ class Astar:
 
 no_arad = No('Arad', 0, None, None)
 
-problema_romenia = Problema(estados.estados_romenia, no_arad,
-                            lambda no: no.estado == 'Bucharest')
+problema_romenia = Problema(cidades_acoes, no_arad,
+                            lambda no: no.estado == 'Bucharest', "Bucharest")
 
 busca = Astar(problema_romenia)
 busca.executar()
