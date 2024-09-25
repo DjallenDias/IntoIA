@@ -25,7 +25,10 @@ class No:
         resultado:list[No] = []
 
         for acao in espaco_acoes['acoes']: # type: ignore
-            filho = No(acao['destino'], acao['custo'] + distancia(cidades_coord[self.estado], cidades_coord[problema.nome_objetivo]),
+            dist = distancia(cidades_coord[acao["destino"]], cidades_coord[problema.nome_objetivo])
+            
+            filho = No(acao['destino'],
+                        acao['custo'] + dist,
                         self, acao['destino'])
             
             resultado.append(filho)
