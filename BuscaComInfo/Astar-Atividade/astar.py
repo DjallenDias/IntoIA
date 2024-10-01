@@ -113,3 +113,4 @@ problema_romenia = Problema(estados.estados, no_arad,
 
 busca = Astar(problema_romenia)
 busca.executar()
+
